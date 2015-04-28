@@ -68,4 +68,4 @@ if __name__ == "__main__":
         CBBOC2015.run(competitor)
     except IOError as e:
         print e
-        print "Make sure you are calling this from the top level directory"
+        print "Make sure you are calling this from the src directory"

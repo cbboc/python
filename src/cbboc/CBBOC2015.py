@@ -43,10 +43,10 @@ def testClient(client, fns):
     return endTime - startTime
 
 def run(client):
-    configFile = path.join("resources", "classFolder.txt")
+    configFile = path.join(path.pardir, "resources", "classFolder.txt")
     with open(configFile, "r") as f:
         classFolder = f.read().strip()
-    base_path = path.join("resources", classFolder)
+    base_path = path.join(path.pardir, "resources", classFolder)
     problemClass = ProblemClass(base_path, client.getTrainingCategory())
     if client.getTrainingCategory() == TrainingCategory.NONE:
         actualTrainingTime = 0

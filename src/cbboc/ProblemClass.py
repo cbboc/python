@@ -48,6 +48,6 @@ class ProblemClass(object):
     def getTestingInstances(self): return self.testing
 
 if __name__ == "__main__":
-    base_name = path.join("resources", "test", "toy")
+    base_name = path.join(path.pardir, "resources", "test", "toy")
     pc = ProblemClass(base_name, TrainingCategory.LONG)
     print len(pc.getTrainingInstances()), len(pc.getTestingInstances())

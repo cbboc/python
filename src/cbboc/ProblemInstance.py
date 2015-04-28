@@ -48,7 +48,7 @@ class ProblemInstance(object):
     
 if __name__ == "__main__":
     from os import path
-    filename = path.join("resources", "toy.txt")
+    filename = path.join(path.pardir, "resources", "toy.txt")
     with open(filename, "r") as f:
         prob = ProblemInstance(f)
     candidate = [True] * prob.getNumGenes()

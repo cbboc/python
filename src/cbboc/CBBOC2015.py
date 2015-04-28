@@ -2,12 +2,12 @@ import time
 import json
 from datetime import datetime
 from os import path
-from ProblemClass import ProblemClass
-import ObjectiveFn
-import TrainingCategory
+from .ProblemClass import ProblemClass
+from . import ObjectiveFn
+from . import TrainingCategory
 
 #TESTING_TIME_IN_MILLIS = 30 * 1000L
-BASE_TIME_IN_MILLIS = 250 * 1000L
+BASE_TIME_IN_MILLIS = 250 * 1000
 
 def trainClient(client, fns):
     startTime = time.time() * 1000  # Coverts to milliseconds
@@ -84,4 +84,4 @@ def run(client):
     as_string = json.dumps(results, f, indent=4, sort_keys=True)
     with open(filename, "w") as f:
         f.write(as_string)
-    print as_string
+    print(as_string)

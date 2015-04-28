@@ -1,5 +1,5 @@
 import time
-import ProblemInstance
+from . import ProblemInstance
 
 TRAINING, TESTING = 0, 1
 

@@ -1,12 +1,12 @@
 class ProblemInstance(object):
     def __init__(self, file_obj):
         # Get the first line and extract integer values
-        self.numGenes, self.maxEvalsPerInstance, self._K = map(int, file_obj.readline().split())
+        self.numGenes, self.maxEvalsPerInstance, self._K = list(map(int, file_obj.readline().split()))
         self._data = []
         for _ in range(self.numGenes):
             pieces = file_obj.readline().split()
-            epistasis = map(int, pieces[:self._K + 1])
-            fitness = map(float, pieces[self._K + 1:])
+            epistasis = list(map(int, pieces[:self._K + 1]))
+            fitness = list(map(float, pieces[self._K + 1:]))
             self._data.append((epistasis, fitness))
         assert self.invariant()
     
@@ -53,4 +53,4 @@ if __name__ == "__main__":
         prob = ProblemInstance(f)
     candidate = [True] * prob.getNumGenes()
     print(prob.value(candidate))
-    print prob
+    print(prob)

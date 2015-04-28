@@ -11,7 +11,7 @@ def make_improvement(solution, previous_fitness, objectiveFn):
     the fitness of the new solution, or the original if no
     improvement was found
     '''
-    options = range(len(solution))
+    options = list(range(len(solution)))
     random.shuffle(options)
     for index in options:
         # flip bit
@@ -67,5 +67,5 @@ if __name__ == "__main__":
     try:
         CBBOC2015.run(competitor)
     except IOError as e:
-        print e
-        print "Make sure you are calling this from the src directory"
+        print(e)
+        print("Make sure you are calling this from the src directory")

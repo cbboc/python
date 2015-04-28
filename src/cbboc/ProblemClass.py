@@ -1,9 +1,9 @@
-from ObjectiveFn import ObjectiveFN, TRAINING, TESTING
-from ProblemInstance import ProblemInstance
-import TrainingCategory
+from .ObjectiveFn import ObjectiveFN, TRAINING, TESTING
+from .ProblemInstance import ProblemInstance
+from . import TrainingCategory
 from os import path
 from glob import glob
-import TrainingCategory
+from . import TrainingCategory
 
 class SharedPrimitive(object):
     ''' Wraps an immutable type to allow for shared read/write '''
@@ -50,4 +50,4 @@ class ProblemClass(object):
 if __name__ == "__main__":
     base_name = path.join(path.pardir, "resources", "test", "toy")
     pc = ProblemClass(base_name, TrainingCategory.LONG)
-    print len(pc.getTrainingInstances()), len(pc.getTestingInstances())
+    print(len(pc.getTrainingInstances()), len(pc.getTestingInstances()))

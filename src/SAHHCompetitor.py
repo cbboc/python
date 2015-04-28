@@ -59,12 +59,12 @@ class SAHHCompetitor(Competitor):
         self.saScheduleUpperBound = sys.float_info.max
     
     def train(self, trainingSet, maxTimeInMilliseconds):
-        evalsPerCase = trainingSet[0].getRemainingEvaluations() / len(trainingSet)
+        evalsPerCase = trainingSet[0].getRemainingEvaluations() // len(trainingSet)
         tempuratures = []
         for instance in trainingSet:
             fitnessTrajectory = fitnessTrajectoryOfRandomWalk(instance, evalsPerCase)
             tempuratures.append(WhiteTemperatureRangeForSA(fitnessTrajectory))
-        lower, upper = zip(*tempuratures)
+        lower, upper = list(zip(*tempuratures))
         self.saScheduleLowerBound = sum(lower) / len(lower)
         self.saScheduleUpperBound = sum(upper) / len(upper)
     
@@ -93,5 +93,5 @@ if __name__ == "__main__":
     try:
         CBBOC2015.run(competitor)
     except IOError as e:
-        print e
-        print "Make sure you are calling this from the src directory"
+        print(e)
+        print("Make sure you are calling this from the src directory")

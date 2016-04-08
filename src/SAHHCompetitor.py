@@ -9,7 +9,7 @@
    year = {1984}
  }
 '''
-from cbboc import CBBOC2015
+from cbboc import CBBOC
 from cbboc.Competitor import Competitor
 from cbboc import TrainingCategory
 import random
@@ -91,7 +91,7 @@ if __name__ == "__main__":
     # Create your competitor, and call "run"
     competitor = SAHHCompetitor()
     try:
-        CBBOC2015.run(competitor)
+        CBBOC.run(competitor)
     except IOError as e:
         print(e)
         print("Make sure you are calling this from the src directory")

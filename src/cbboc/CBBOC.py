@@ -61,7 +61,7 @@ def run(client):
         raise ValueError("Unknown Training Category")
     dateFormatted = datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
     filename = path.join(base_path, "results",
-                         "CBBOC2015results-" + client.__class__.__name__ + '-' + classFolder + '-' + dateFormatted + ".json")
+                         "CBBOCresults-" + client.__class__.__name__ + '-' + classFolder + '-' + dateFormatted + ".json")
     results = {"competitorName": client.__class__.__name__,
                "competitorLanguage": "Python",
                "problemClassName": classFolder,

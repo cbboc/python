@@ -1,12 +1,12 @@
 class ProblemInstance(object):
     def __init__(self, file_obj):
         # Get the first line and extract integer values
-        self.numGenes, self.maxEvalsPerInstance, self._K = list(map(int, file_obj.readline().split()))
+        self.numGenes, self.maxEvalsPerInstance, self._K, self._M = list(map(int, file_obj.readline().split()))
         self._data = []
         for _ in range(self.numGenes):
             pieces = file_obj.readline().split()
-            epistasis = list(map(int, pieces[:self._K + 1]))
-            fitness = list(map(float, pieces[self._K + 1:]))
+            epistasis = list(map(int, pieces[:self._K]))
+            fitness = list(map(float, pieces[self._K:]))
             self._data.append((epistasis, fitness))
         assert self.invariant()
     
@@ -33,9 +33,9 @@ class ProblemInstance(object):
         return result.format(self.numGenes, self.maxEvalsPerInstance)
     
     def _allValidSize(self):
-        tableSize = 1 << (self._K + 1)
+        tableSize = 1 << self._K
         for epistasis, fitness in self._data:
-            if len(epistasis) != self._K + 1 or len(fitness) != tableSize:
+            if len(epistasis) != self._K or len(fitness) != tableSize:
                 return False
         return True
     
@@ -48,7 +48,7 @@ class ProblemInstance(object):
     
 if __name__ == "__main__":
     from os import path
-    filename = path.join(path.pardir, "resources", "toy.txt")
+    filename = path.join(path.pardir, "resources", "toy1.txt")
     with open(filename, "r") as f:
         prob = ProblemInstance(f)
     candidate = [True] * prob.getNumGenes()

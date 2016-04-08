@@ -3,7 +3,7 @@ class ProblemInstance(object):
         # Get the first line and extract integer values
         self.numGenes, self.maxEvalsPerInstance, self._K, self._M = list(map(int, file_obj.readline().split()))
         self._data = []
-        for _ in range(self.numGenes):
+        for _ in range(self._M):
             pieces = file_obj.readline().split()
             epistasis = list(map(int, pieces[:self._K]))
             fitness = list(map(float, pieces[self._K:]))
@@ -29,8 +29,8 @@ class ProblemInstance(object):
         return total
     
     def __str__(self):
-        result = "ProblemInstance(numGenes={0},maxEvalsPerInstance={1})"
-        return result.format(self.numGenes, self.maxEvalsPerInstance)
+        result = "ProblemInstance(numGenes={0},maxEvalsPerInstance={1},numFunctions={2})"
+        return result.format(self.numGenes, self.maxEvalsPerInstance, len(self._data))
     
     def _allValidSize(self):
         tableSize = 1 << self._K
@@ -43,12 +43,19 @@ class ProblemInstance(object):
         return (self.getNumGenes() > 0 and
                 self.getMaxEvalsPerInstance() > 0 and
                 self._K > 0 and
-                len(self._data) == self.getNumGenes() and
+                len(self._data) == self._M and
                 self._allValidSize())
     
 if __name__ == "__main__":
     from os import path
     filename = path.join(path.pardir, "resources", "toy1.txt")
+    with open(filename, "r") as f:
+        prob = ProblemInstance(f)
+    candidate = [True] * prob.getNumGenes()
+    print(prob.value(candidate))
+    print(prob)
+
+    filename = path.join(path.pardir, "resources", "toy2.txt")
     with open(filename, "r") as f:
         prob = ProblemInstance(f)
     candidate = [True] * prob.getNumGenes()

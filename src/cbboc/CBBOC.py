@@ -6,8 +6,7 @@ from .ProblemClass import ProblemClass
 from . import ObjectiveFn
 from . import TrainingCategory
 
-#TESTING_TIME_IN_MILLIS = 30 * 1000L
-BASE_TIME_IN_MILLIS = 250 * 1000
+BASE_TIME_IN_MILLIS = 60 * 1000
 
 def trainClient(client, fns):
     startTime = time.time() * 1000  # Coverts to milliseconds
